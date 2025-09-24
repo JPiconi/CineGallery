@@ -1,0 +1,13 @@
+Nome do Projeto: CineVault
+
+Descrição:
+O aplicativo tem como finalidade proporcionar aos usuários o acesso a uma galeria de filmes,
+onde poderão visualizar informações detalhadas sobre cada título disponível. Além disso, a
+plataforma oferece a funcionalidade de salvamento, permitindo que os usuários marquem e
+armazenem os filmes de sua preferência em uma lista personalizada para consultas futuras.
+
+Logo:
+Apresenta um design simples, incorporando elementos visuais relacionados ao universo
+cinematográfico, de modo a reforçar a identidade temática e proporcionar uma
+experiência agradável ao usuário.
+

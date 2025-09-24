@@ -110,7 +110,7 @@ export default function Gallery() {
             `https://www.omdbapi.com/?s=${q}&type=movie&page=1&apikey=${API_KEY}`
           );
           results = results.concat(res.data.Search || []);
-        } catch (e) {}
+        } catch (e) { }
       }
 
       // Remove duplicados
@@ -130,14 +130,14 @@ export default function Gallery() {
   // Sempre que a tela ganhar foco, recarrega os favoritos do AsyncStorage
   useFocusEffect(
     React.useCallback(() => {
-      const loadFavorites = async () => {
-        const favs = await AsyncStorage.getItem("favorites");
+      const loadFavoritos = async () => {
+        const favs = await AsyncStorage.getItem("favoritos");
         const favList = favs ? JSON.parse(favs) : [];
 
         // Salva apenas os imdbID para fácil checagem
         setFavoriteIds(favList.map((f) => f.imdbID));
       };
-      loadFavorites();
+      loadFavoritos();
     }, [updateFav]) // depende de updateFav para atualizar sempre que mudar
   );
 
@@ -145,7 +145,7 @@ export default function Gallery() {
   const toggleFavorite = async (movie) => {
     try {
       // Carrega lista atual de favoritos
-      let favs = await AsyncStorage.getItem("favorites");
+      let favs = await AsyncStorage.getItem("favoritos");
       favs = favs ? JSON.parse(favs) : [];
 
       // Se já é favorito, remove
@@ -157,7 +157,7 @@ export default function Gallery() {
       }
 
       // Salva no AsyncStorage
-      await AsyncStorage.setItem("favorites", JSON.stringify(favs));
+      await AsyncStorage.setItem("favoritos", JSON.stringify(favs));
 
       // Força reload dos favoritos
       setUpdateFav((prev) => !prev);

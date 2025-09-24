@@ -18,9 +18,9 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useFocusEffect } from "@react-navigation/native";
 
 // Componente principal da tela de favoritos
-export default function Favorites() {
+export default function Favoritos() {
   // Hook de estado para armazenar a lista de filmes favoritos
-  const [favorites, setFavorites] = useState([]);
+  const [favoritos, setFavoritos] = useState([]);
 
   // Sempre que a tela "Favorites" for aberta ou voltar ao foco,
   // recarregar os favoritos do AsyncStorage
@@ -28,15 +28,15 @@ export default function Favorites() {
     React.useCallback(() => {
       const loadFavorites = async () => {
         // Buscar do AsyncStorage a chave "favorites"
-        const favs = await AsyncStorage.getItem("favorites");
+        const favs = await AsyncStorage.getItem("favoritos");
 
         // Se existir algo, transforma de JSON em array e salva no estado
         // Se não existir, salva um array vazio
-        setFavorites(favs ? JSON.parse(favs) : []);
+        setFavoritos(favs ? JSON.parse(favs) : []);
       };
 
       // Executa a função de carregar favoritos
-      loadFavorites();
+      loadFavoritos();
     }, []) // [] significa que o efeito não depende de nada além do foco da tela
   );
 
@@ -56,7 +56,7 @@ export default function Favorites() {
   return (
     <View style={styles.container}>
       {/* Título da tela */}
-      <Text style={styles.title}>⭐ Meus Favoritos</Text>
+      <Text style={styles.title}>✨ Meus Favoritos</Text>
 
       {/* FlatList exibe a lista de filmes favoritos */}
       <FlatList
