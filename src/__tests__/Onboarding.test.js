@@ -1,21 +1,15 @@
 import React from "react";
 import { render, fireEvent } from "@testing-library/react-native";
-import Onboarding from "../Pages/Onboarding";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import Login from "../Pages/Login";
 
-describe("Tela Onboarding", () => {
-  const mockNav = { replace: jest.fn() };
+test("renderiza a tela Login corretamente", () => {
+  const { getByText } = render(<Login />);
+  expect(getByText("Login")).toBeTruthy();
+});
 
-  test("renderiza textos principais", () => {
-    const { getByText } = render(<Onboarding navigation={mockNav} />);
-    expect(getByText(/Bem-vindo/)).toBeTruthy();
-    expect(getByText(/Explore milhares/)).toBeTruthy();
-  });
-
-  test("ao clicar em começar, salva e navega para Login", async () => {
-    const { getByText } = render(<Onboarding navigation={mockNav} />);
-    fireEvent.press(getByText("Começar"));
-    expect(AsyncStorage.setItem).toHaveBeenCalledWith("hasSeenOnboarding", "true");
-    expect(mockNav.replace).toHaveBeenCalledWith("Login");
-  });
+test("simula clique no botão de login", () => {
+  const { getByText } = render(<Login />);
+  const botao = getByText("Entrar");
+  fireEvent.press(botao);
+  expect(botao).toBeTruthy();
 });

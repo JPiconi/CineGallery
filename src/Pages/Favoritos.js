@@ -26,7 +26,7 @@ export default function Favoritos() {
   // recarregar os favoritos do AsyncStorage
   useFocusEffect(
     React.useCallback(() => {
-      const loadFavorites = async () => {
+      const loadFavoritos = async () => {
         // Buscar do AsyncStorage a chave "favorites"
         const favs = await AsyncStorage.getItem("favoritos");
 
@@ -43,13 +43,13 @@ export default function Favoritos() {
   // Função para remover um filme da lista de favoritos
   const removeFavorite = async (id) => {
     // Cria uma nova lista sem o item cujo imdbID seja igual ao clicado
-    const newFavorites = favorites.filter((item) => item.imdbID !== id);
+    const newFavoritos = favoritos.filter((item) => item.imdbID !== id);
 
     // Atualiza o estado local com a nova lista
-    setFavorites(newFavorites);
+    setFavoritos(newFavoritos);
 
     // Salva a lista atualizada no AsyncStorage
-    await AsyncStorage.setItem("favorites", JSON.stringify(newFavorites));
+    await AsyncStorage.setItem("favoritos", JSON.stringify(newFavoritos));
   };
 
   // JSX (UI) que será renderizado na tela
@@ -60,7 +60,7 @@ export default function Favoritos() {
 
       {/* FlatList exibe a lista de filmes favoritos */}
       <FlatList
-        data={favorites} // Fonte de dados
+        data={favoritos} // Fonte de dados
         keyExtractor={(item) => item.imdbID} // Cada item é identificado pelo imdbID
         renderItem={(
           { item } // Renderização de cada filme
@@ -74,7 +74,7 @@ export default function Favoritos() {
               <Text style={styles.movieTitle}>{item.Title}</Text>
 
               {/* Botão para remover dos favoritos */}
-              <TouchableOpacity onPress={() => removeFavorite(item.imdbID)}>
+              <TouchableOpacity onPress={() => removeFavorito(item.imdbID)}>
                 <Text style={styles.remove}>Remover</Text>
               </TouchableOpacity>
             </View>
